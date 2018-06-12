@@ -9,6 +9,8 @@ import rashjz.info.app.mail.mailexporter.domain.ClientDTO;
 
 @Slf4j
 public class StudentProcessor implements ItemProcessor<ClientDTO, ClientDTO> {
+    private static final String EMAIL_TO = "mail@gmail.com";
+
     JavaMailSender javaMailSender;
 
     @Autowired
@@ -21,7 +23,7 @@ public class StudentProcessor implements ItemProcessor<ClientDTO, ClientDTO> {
         log.info(item.toString() + " processing data ");
         SimpleMailMessage message = new SimpleMailMessage();
         message.setText(item.getName());
-        message.setTo("mail@gmail.com" );
+        message.setTo(EMAIL_TO);
         message.setFrom(item.getEmailAddress() );
         javaMailSender.send(message);
 

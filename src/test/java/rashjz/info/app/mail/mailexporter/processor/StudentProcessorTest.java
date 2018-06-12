@@ -12,15 +12,17 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import rashjz.info.app.mail.mailexporter.domain.ClientDTO;
 
-import javax.mail.internet.MimeMessage;
-
 import static org.mockito.Mockito.*;
 
 
 @RunWith(MockitoJUnitRunner.class)
 public class StudentProcessorTest {
+
+    private static final String TEST_DATA = "test_data";
+    private static final String EMAIL_TO = "mail@gmail.com";
+
     @Mock
-    JavaMailSender javaMailSender;
+    private JavaMailSender javaMailSender;
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -55,16 +57,16 @@ public class StudentProcessorTest {
     private static SimpleMailMessage mockSimpleMailMessage() {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setText(mockClientDTO().getName());
-        message.setTo("mail@gmail.com");
+        message.setTo(EMAIL_TO);
         message.setFrom(mockClientDTO().getEmailAddress());
         return message;
     }
 
     private static ClientDTO mockClientDTO() {
         ClientDTO clientDTO = new ClientDTO();
-        clientDTO.setEmailAddress("rashad");
-        clientDTO.setName("rashad");
-        clientDTO.setPurchasedPackage("rashad");
+        clientDTO.setEmailAddress(TEST_DATA);
+        clientDTO.setName(TEST_DATA);
+        clientDTO.setPurchasedPackage(TEST_DATA);
         return clientDTO;
     }
 }
