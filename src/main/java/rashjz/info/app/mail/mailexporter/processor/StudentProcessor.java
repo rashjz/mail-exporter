@@ -20,7 +20,7 @@ public class StudentProcessor implements ItemProcessor<ClientDTO, ClientDTO> {
     public ClientDTO process(ClientDTO item) throws Exception {
         log.info(item.toString() + " processing data ");
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setText(item.toString());
+        message.setText(item.getName());
         message.setTo("mail@gmail.com" );
         message.setFrom(item.getEmailAddress() );
         javaMailSender.send(message);
